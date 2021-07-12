@@ -9,5 +9,29 @@
 
     <body>
         <h1>Testou</h1>
+        <div>
+            {# Crée une variable #}
+            {% set name = "Virginie" %}
+            <h2> {{ name }} </h2>
+
+            {# Crée un tableau #}
+            {% set colors = ["orange", "brown", "turquoise", "blue"] %}
+            {% for color in colors %}
+                <div style="background-color:{{ color }}">{{ color }}</div>
+            {% endfor %}
+
+            {# Crée un objet #}
+            {% set book = {
+                title: 'Amelia Earhart',
+                year: 2010,
+                author: "Jennifer Lesieur"
+            } %}
+            <h3> {{ book.author }} </h3>
+            <div>
+                {% for key, val in book %}
+                    <div>{{ key }} : {{ val }}</div>
+                {% endfor %}
+            </div>
+        </div>
     </body>
 </html>
