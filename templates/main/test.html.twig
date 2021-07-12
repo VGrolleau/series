@@ -10,13 +10,22 @@
     <body>
         <h1>Testou</h1>
         <div>
+            <div>{{ "now"|date('Y') }}</div>
+            <div>{{ "+1 year"|date('Y') }}</div>
             {# Crée une variable #}
             {% set name = "Virginie" %}
-            <h2> {{ name }} </h2>
+            <h2>{{ name|upper }}</h2>
+            <h2>Nombre de lettres dans le prénom : {{ name|length }} </h2>
 
             {# Crée un tableau #}
             {% set colors = ["orange", "brown", "turquoise", "blue"] %}
+
+            <div>Nombre de couleurs : {{ colors|length }}</div>
+            <div>{{ colors|join(' / ') }}</div>
+
             {% for color in colors %}
+                <div>{{ loop.index }}</div>
+                <div>{{ loop.last }}</div>
                 <div style="background-color:{{ color }}">{{ color }}</div>
             {% endfor %}
 
