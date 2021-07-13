@@ -3,38 +3,41 @@
 {% block title %}{{ parent() }} | Test{% endblock %}
 
 {% block body %}
-        <h1>Testou</h1>
+    <h1>Testou</h1>
+
+    <div>{{ mySerie.title }} {{ autreVar }}</div>
+
+    <div>
+        <div>{{ "now"|date('Y') }}</div>
+        <div>{{ "+1 year"|date('Y') }}</div>
+        {# Crée une variable #}
+        {% set name = "Virginie" %}
+        <h2>{{ name|upper }}</h2>
+        <h2>Nombre de lettres dans le prénom : {{ name|length }} </h2>
+
+        {# Crée un tableau #}
+        {% set colors = ["orange", "brown", "turquoise", "blue"] %}
+
+        <div>Nombre de couleurs : {{ colors|length }}</div>
+        <div>{{ colors|join(' / ') }}</div>
+
+        {% for color in colors %}
+            <div>{{ loop.index }}</div>
+            <div>{{ loop.last }}</div>
+            <div style="background-color:{{ color }}">{{ color }}</div>
+        {% endfor %}
+
+        {# Crée un objet #}
+        {% set book = {
+            title: 'Amelia Earhart',
+            year: 2010,
+            author: "Jennifer Lesieur"
+        } %}
+        <h3> {{ book.author }} </h3>
         <div>
-            <div>{{ "now"|date('Y') }}</div>
-            <div>{{ "+1 year"|date('Y') }}</div>
-            {# Crée une variable #}
-            {% set name = "Virginie" %}
-            <h2>{{ name|upper }}</h2>
-            <h2>Nombre de lettres dans le prénom : {{ name|length }} </h2>
-
-            {# Crée un tableau #}
-            {% set colors = ["orange", "brown", "turquoise", "blue"] %}
-
-            <div>Nombre de couleurs : {{ colors|length }}</div>
-            <div>{{ colors|join(' / ') }}</div>
-
-            {% for color in colors %}
-                <div>{{ loop.index }}</div>
-                <div>{{ loop.last }}</div>
-                <div style="background-color:{{ color }}">{{ color }}</div>
+            {% for key, val in book %}
+                <div>{{ key }} : {{ val }}</div>
             {% endfor %}
-
-            {# Crée un objet #}
-            {% set book = {
-                title: 'Amelia Earhart',
-                year: 2010,
-                author: "Jennifer Lesieur"
-            } %}
-            <h3> {{ book.author }} </h3>
-            <div>
-                {% for key, val in book %}
-                    <div>{{ key }} : {{ val }}</div>
-                {% endfor %}
-            </div>
         </div>
+    </div>
 {% endblock %}
