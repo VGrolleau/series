@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>Séries</title>
-    </head>
+{% extends 'base.html.twig' %}
 
-    <body>
+{% block title %}{{ parent() }} | Test{% endblock %}
+
+{% block body %}
         <h1>Testou</h1>
         <div>
             <div>{{ "now"|date('Y') }}</div>
@@ -42,5 +37,4 @@
                 {% endfor %}
             </div>
         </div>
-    </body>
-</html>
+{% endblock %}
