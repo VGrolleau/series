@@ -44,12 +44,24 @@ class SerieController extends AbstractController
     /**
      * @Route("/create", name="create")
      */
-    public function create(Request $request): Response
+    public function create(
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response
     {
         $serie = new Serie();
+        $serie->setDateCreated(new \DateTime());
         $serieForm = $this->createForm(SerieType::class, $serie);
 
-        // todo : traiter le formulaire
+        $serieForm->handleRequest($request);
+
+        if ($serieForm->isSubmitted() && $serieForm->isValid()) {
+            $entityManager->persist($serie);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Serie added, good job !');
+            return $this->redirectToRoute('serie_details', ['id' => $serie->getId()]);
+        }
 
         return $this->render('serie/create.html.twig', [
             'serieForm' => $serieForm->createView()
