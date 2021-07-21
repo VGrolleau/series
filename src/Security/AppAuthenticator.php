@@ -2,7 +2,6 @@
 
 namespace App\Security;
 
-use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,10 +49,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-//        $pathInfo = $request->getPathInfo();
-//        $requestUri = $request->getRequestUri();
-//
-//        $url = str_replace($pathInfo, rtrim($pathInfo, ' /'), $requestUri);
+
         return new RedirectResponse('/~vikeju/series/public');
     }
 
